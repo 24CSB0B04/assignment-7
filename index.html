@@ -1,0 +1,63 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <script>
+            let array = [];
+            function count() {
+                const c = array.length;
+                document.getElementById("number").textContent=c;
+            }
+            function storeinput() {
+                const inputvalue = document.getElementById("input").value.trim();  
+                if (inputvalue !== "") {  
+                    array.push(inputvalue);  
+                    updateScreen();  
+                    count();
+                }
+                document.getElementById("input").value = "";  
+            }
+
+            function updateScreen() {
+                const screen = document.getElementById("screen");
+                screen.value = array.join("\n");  
+            }
+
+            function removeinput() {
+                array.pop();
+                updateScreen();
+                count();
+            }
+
+            function clearAll() {
+                array = [];  
+                
+                document.getElementById("screen").value = "No movies added yet";  
+                document.getElementById("number").textContent = 0;
+            }
+        </script>
+
+        <div class="container">
+            <div class="box">
+                
+                <textarea id="screen" readonly>No movies added yet</textarea>
+
+                <div class="subcontainer1">
+                    <input class="input" type="text" id="input" placeholder="Enter a movie">
+                </div>
+
+                <div class="subcontainer2">
+                    <button onclick="storeinput()" class="add">Add</button>
+                    <button onclick="removeinput()" class="add">Delete</button>
+                    <button onclick="clearAll()" class="add">Clear All</button>
+                </div>
+                <p>Number of movies = <span id="number">0</span> </p>
+            </div>
+        </div>
+    </body>
+    </html>
